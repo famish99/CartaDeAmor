@@ -4,5 +4,6 @@ import CartaDeAmor.views as views
 
 urlpatterns = patterns('',
     url(r'^$', views.HomeView.as_view()),
+    url(r'^create/$', views.CreateView.as_view()),
     )
 
