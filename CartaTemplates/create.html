@@ -2,8 +2,43 @@
 
 {% block content %}
 <div class="row">
-    <div class="span12">
-        <legend><b>Love Letter</b> - Create New Game</legend>
+    <div class="span10 offset1">
+        <form class="form-horizontal">
+            <legend><b>Love Letter</b> - Create New Game</legend>
+            <div class="control-group">
+                <label class="control-label">Name (optional)</label>
+                <div class="controls">
+                    <input type="text" name="name" id="inputName">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Type</label>
+                <div class="controls">
+                    <select name="type" class="span2">
+                        <option value="normal">Normal Game</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Players</label>
+                <div class="controls">
+                    <select name="num_players" class="span1">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected="true">4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Password (optional)</label>
+                <div class="controls">
+                    <input type="text" name="password" id="inputPassword"><span class="help-block">Only needed if you want to restrict entry to the game.</span>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create game</button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}
