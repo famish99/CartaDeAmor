@@ -3,12 +3,18 @@
 {% block content %}
 <div class="row">
     <div class="span10 offset1">
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="POST" action="/CartaDeAmor/create/new/">{% csrf_token %}
             <legend><b>Love Letter</b> - Create New Game</legend>
             <div class="control-group">
                 <label class="control-label">Name (optional)</label>
                 <div class="controls">
                     <input type="text" name="name" id="inputName">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Password (optional)</label>
+                <div class="controls">
+                    <input type="text" name="password" id="inputPassword">
                 </div>
             </div>
             <div class="control-group">
@@ -27,12 +33,6 @@
                         <option value="3">3</option>
                         <option value="4" selected="true">4</option>
                     </select>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Password (optional)</label>
-                <div class="controls">
-                    <input type="text" name="password" id="inputPassword"><span class="help-block">Only needed if you want to restrict entry to the game.</span>
                 </div>
             </div>
             <div class="form-actions">
