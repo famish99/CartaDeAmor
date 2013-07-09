@@ -4,7 +4,17 @@
 <div class="row">
     <div class="span12">
         <legend><b>Love Letter</b> - Game Lobby</legend>
-        {% if game_queue %}
+        <style TYPE="text/css">
+            table tr td a {
+                display:block;
+                height:100%;
+                width:100%;
+            }
+            table tr td a:hover {
+                text-decoration:none;
+            }
+        </style>
+        {% if joined_games %}
         <div>
             <h4>Games you've joined</h4>
             <table class="table table-hover table-condensed">
@@ -16,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for session in game_queue %}
+                    {% for session in joined_games %}
                     <tr></tr>
                     {% endfor %}
                 </tbody>
@@ -25,7 +35,7 @@
         {% endif %}
         <div>
             <h4>Awaiting Players</h4>
-            <table class="table table-condensed">
+            <table class="table table-hover table-condensed">
                 <thead>
                     <tr>
                         <th width="10%">Session ID</th>
@@ -37,7 +47,13 @@
                 </thead>
                 <tbody>
                     {% for session in game_queue %}
-                    <tr></tr>
+                    <tr>
+                        <td><a href="game/{{ session.id }}">{{ session.id }}</a></td>
+                        <td><a href="game/{{ session.id }}">{% if session.password %}<i class="icon-lock"></i>{% endif %}&nbsp;</a></td>
+                        <td><a href="game/{{ session.id }}">{{ session.name }}</a></td>
+                        <td><a href="game/{{ session.id }}">&nbsp;</a></td>
+                        <td><a href="game/{{ session.id }}">{{ session.num_players }} of {{ session.max_players }}</a></td>
+                    </tr>
                     {% endfor %}
                     <tr>
                         <td colspan=5><a href="create/"><i class="icon-plus"></i> Create new game</a></td>

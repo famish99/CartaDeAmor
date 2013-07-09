@@ -18,6 +18,11 @@ class HomeView(TView):
     template_name = 'CartaTemplates/home.html'
     page_title = 'Love Letter - Home'
 
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context["game_queue"] = Session.objects.filter(status="waiting")
+        return context
+
 
 class CreateView(TView):
     """
@@ -34,4 +39,5 @@ def process_create(request):
     session.password = request.POST.get("password")
     user_profile = request.user.profile
     session.add_player(user_profile)
-    return redirect('/CartaDeAmor/')
+    return redirect('/CartaDeAmor')
+    #return redirect('/CartaDeAmor/game/%d/' % session.id)
