@@ -6,5 +6,6 @@ urlpatterns = patterns('',
     url(r'^$', views.HomeView.as_view()),
     url(r'^create/$', views.CreateView.as_view()),
     url(r'^create/new/$', views.process_create),
+    url(r'^game/(?P<pk>\d+)/$', views.GameView.as_view()),
     )
 

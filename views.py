@@ -32,6 +32,23 @@ class CreateView(TView):
     page_title = 'Love Letter - Create New Game'
 
 
+class GameView(TView):
+    """
+    View class for gameplay
+    """
+    template_name = 'CartaTemplates/game.html'
+    page_title = 'Love Letter - Game'
+
+    def get_context_data(self, **kwargs):
+        context = super(GameView, self).get_context_data(**kwargs)
+        pk = kwargs.get("pk")
+        session = Session.objects.get(id=pk)
+        context["page_title"] = "%s ID # %s" % (self.__class__.page_title, pk)
+        context["pk"] = pk
+        context["name"] = session.name
+        return context
+
+
 def process_create(request):
     num_players = request.POST.get("num_players", 4)
     session = Session.objects.create(max_players=num_players)
@@ -39,5 +56,4 @@ def process_create(request):
     session.password = request.POST.get("password")
     user_profile = request.user.profile
     session.add_player(user_profile)
-    return redirect('/CartaDeAmor')
-    #return redirect('/CartaDeAmor/game/%d/' % session.id)
+    return redirect('/CartaDeAmor/game/%d/' % session.id)
